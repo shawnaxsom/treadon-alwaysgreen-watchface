@@ -1,5 +1,16 @@
 # TreadOn Watchface for Fitbit Versa Lite
 
+## Features
+
+This is a watchface for Fitbit watch devices. I'm using a Versa Lite, so it is optimized for that I suppose.
+
+The watch at this point shows:
+
+- Total steps delta compared to expected steps (currently hard-coded to 10k steps goal 8am-8pm)
+- Steps this hour
+- Current Time
+- Total Steps
+
 ## Getting Started
 
 First, install the Fitbit OS Simulator. Versa Lite doesn't currently support a Developer Bridge.

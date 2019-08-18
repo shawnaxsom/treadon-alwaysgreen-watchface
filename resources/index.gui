@@ -1,4 +1,6 @@
 <svg class="background">
   <text id="myLabel" />
-  <text id="stepsLabel" />
+  <text id="hourlyStepsLabel" />
+  <text id="totalStepsLabel" />
+  <text id="trajectoryStepsLabel" />
 </svg>

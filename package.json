@@ -1,8 +1,8 @@
 {
   "fitbit": {
-    "appUUID": "e50ae448-a9b2-418f-b54c-d8ea06dd6573",
+    "appUUID": "8743c87c-8bc2-4b06-be60-9a6d62bf1c48",
     "appType": "clockface",
-    "appDisplayName": "Test Clock",
+    "appDisplayName": "Tread On",
     "iconFile": "resources/icon.png",
     "wipeColor": "",
     "requestedPermissions": [
@@ -16,7 +16,7 @@
     ],
     "i18n": {
       "en": {
-        "name": "Test Clock"
+        "name": "Tread On"
       }
     },
     "defaultLanguage": "en-US"
@@ -24,5 +24,8 @@
   "devDependencies": {
     "@fitbit/sdk": "~3.1.0",
     "@fitbit/sdk-cli": "^1.6.0"
+  },
+  "scripts": {
+    "build": "fitbit-build"
   }
 }

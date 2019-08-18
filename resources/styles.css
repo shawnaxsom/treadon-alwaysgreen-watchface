@@ -12,12 +12,32 @@
   fill: white;
 }
 
-#stepsLabel {
-  font-size: 80;
+#hourlyStepsLabel {
+  font-size: 40;
+  font-family: System-Bold;
+  text-length: 32;
+  text-anchor: middle;
+  x: 50%;
+  y: 20%+40;
+  fill: white;
+}
+
+#totalStepsLabel {
+  font-size: 40;
   font-family: System-Bold;
   text-length: 32;
   text-anchor: middle;
   x: 50%;
   y: 80%+40;
+  fill: white;
+}
+
+#trajectoryStepsLabel {
+  font-size: 40;
+  font-family: System-Bold;
+  text-length: 32;
+  text-anchor: middle;
+  x: 50%;
+  y: 0%+40;
   fill: white;
 }
