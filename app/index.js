@@ -54,14 +54,15 @@ const drawTrajectorySteps = date => {
   const today = date;
   const hour = today.getHours();
   const minute = today.getMinutes();
+  const second = today.getSeconds();
 
   const amountSteps = userActivity.today.adjusted["steps"] || 0;
 
   const startHour = 8;
   const endHour = 20;
 
-  const currentMinutes = (hour - startHour) * 60 + minute;
-  const totalMinutes = (endHour - startHour) * 60;
+  const currentSeconds = (hour - startHour) * 60 * 60 + minute * 60 + second;
+  const totalSeconds = (endHour - startHour) * 60 * 60;
   const targetSteps = 10000;
 
   if (hour < startHour) {
@@ -73,7 +74,7 @@ const drawTrajectorySteps = date => {
       trajectoryStepsLabel.text = "";
     }
   } else {
-    const expectedStepsSoFar = (currentMinutes / totalMinutes) * targetSteps;
+    const expectedStepsSoFar = (currentSeconds / totalSeconds) * targetSteps;
     const currentDelta = Math.round(amountSteps - expectedStepsSoFar);
     trajectoryStepsLabel.text = `${
       currentDelta > 0 ? "+" : ""
@@ -102,6 +103,8 @@ const drawHeartRate = () => {
   }
 }
 
+monitorHeartRate();
+
 clock.ontick = evt => {
   drawTime(evt.date);
   drawTotalSteps();
@@ -110,4 +113,3 @@ clock.ontick = evt => {
   drawHeartRate();
 };
 
-monitorHeartRate();
