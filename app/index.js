@@ -3,6 +3,7 @@ import document from "document";
 import { preferences } from "user-settings";
 import * as util from "../common/utils";
 import userActivity from "user-activity";
+import { HeartRateSensor } from "heart-rate";
 
 // Update the clock every second
 clock.granularity = "seconds";
@@ -75,14 +76,38 @@ const drawTrajectorySteps = date => {
     const expectedStepsSoFar = (currentMinutes / totalMinutes) * targetSteps;
     const currentDelta = Math.round(amountSteps - expectedStepsSoFar);
     trajectoryStepsLabel.text = `${
-      currentDelta > 0 ? "+" : "-"
+      currentDelta > 0 ? "+" : ""
     }${currentDelta}`;
   }
 };
+
+const hrm = null;
+
+const monitorHeartRate = () => {
+  if (HeartRateSensor) {
+    const heartRateLabel = document.getElementById("heartRateLabel");
+
+    hrm = new HeartRateSensor();
+    // hrm.addEventListener("reading", () => {
+    //   heartRateLabel.text = hrm.heartRate;
+    // });
+    hrm.start();
+  }
+}
+
+const drawHeartRate = () => {
+  if (hrm) {
+    const heartRateLabel = document.getElementById("heartRateLabel");
+    heartRateLabel.text = hrm.heartRate;
+  }
+}
 
 clock.ontick = evt => {
   drawTime(evt.date);
   drawTotalSteps();
   drawHourlySteps(evt.date);
   drawTrajectorySteps(evt.date);
+  drawHeartRate();
 };
+
+monitorHeartRate();

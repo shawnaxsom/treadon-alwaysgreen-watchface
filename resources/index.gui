@@ -3,4 +3,5 @@
   <text id="hourlyStepsLabel" />
   <text id="totalStepsLabel" />
   <text id="trajectoryStepsLabel" />
+  <text id="heartRateLabel" />
 </svg>

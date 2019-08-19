@@ -41,3 +41,13 @@
   y: 0%+40;
   fill: white;
 }
+
+#heartRateLabel {
+  font-size: 40;
+  font-family: System-Bold;
+  text-length: 32;
+  text-anchor: middle;
+  x: 85%;
+  y: 80%+40;
+  fill: white;
+}
