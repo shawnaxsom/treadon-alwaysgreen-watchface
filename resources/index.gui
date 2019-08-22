@@ -1,4 +1,5 @@
 <svg class="background">
+  <rect id="background-color" width="300" height="300" />
   <text id="myLabel" />
   <text id="hourlyStepsLabel" />
   <text id="totalStepsLabel" />

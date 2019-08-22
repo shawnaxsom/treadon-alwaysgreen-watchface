@@ -76,9 +76,7 @@ const drawTrajectorySteps = date => {
   } else {
     const expectedStepsSoFar = (currentSeconds / totalSeconds) * targetSteps;
     const currentDelta = Math.round(amountSteps - expectedStepsSoFar);
-    trajectoryStepsLabel.text = `${
-      currentDelta > 0 ? "+" : ""
-    }${currentDelta}`;
+    trajectoryStepsLabel.text = `${currentDelta > 0 ? "+" : ""}${currentDelta}`;
   }
 };
 
@@ -94,22 +92,51 @@ const monitorHeartRate = () => {
     // });
     hrm.start();
   }
-}
+};
 
 const drawHeartRate = () => {
   if (hrm) {
     const heartRateLabel = document.getElementById("heartRateLabel");
     heartRateLabel.text = hrm.heartRate;
   }
-}
+};
 
 monitorHeartRate();
 
+function toHex(d) {
+  return ("0" + Number(d).toString(16)).slice(-2).toUpperCase();
+}
+
+// const getColor = steps => {
+//   const value = Math.max(0, Math.min(225, Math.round((steps / 10000) * 255)));
+//   return `${toHex(255 - value)}${toHex(value)}20`;
+// };
+
+const getBackgroundColor = (today) => {
+  const hour = today.getHours();
+  const minute = today.getMinutes();
+  const second = today.getSeconds();
+  const amountSteps = userActivity.today.adjusted["steps"] || 0;
+  const startHour = 8;
+  const endHour = 20;
+  const currentSeconds = (hour - startHour) * 60 * 60 + minute * 60 + second;
+  const totalSeconds = (endHour - startHour) * 60 * 60;
+  const targetSteps = 10000;
+  const expectedStepsSoFar = (currentSeconds / totalSeconds) * targetSteps;
+  const currentDelta = Math.round(amountSteps - expectedStepsSoFar);
+
+  let value = ((currentDelta + 2000) / 4000) * 255;
+  value = Math.max(0, Math.min(225, Math.round(value)));
+  return `#${toHex(255 - value)}${toHex(value)}20`;
+};
+
 clock.ontick = evt => {
+  const background = document.getElementById("background-color");
+  background.style.fill = getBackgroundColor(evt.date);
+
   drawTime(evt.date);
   drawTotalSteps();
   drawHourlySteps(evt.date);
   drawTrajectorySteps(evt.date);
   drawHeartRate();
 };
-
