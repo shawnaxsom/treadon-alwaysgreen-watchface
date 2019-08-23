@@ -112,21 +112,28 @@ function toHex(d) {
 //   return `${toHex(255 - value)}${toHex(value)}20`;
 // };
 
-const getBackgroundColor = (today) => {
+const getBackgroundColor = today => {
   const hour = today.getHours();
   const minute = today.getMinutes();
   const second = today.getSeconds();
-  const amountSteps = userActivity.today.adjusted["steps"] || 0;
+  const currentSteps = userActivity.today.adjusted["steps"] || 0;
   const startHour = 8;
   const endHour = 20;
   const currentSeconds = (hour - startHour) * 60 * 60 + minute * 60 + second;
   const totalSeconds = (endHour - startHour) * 60 * 60;
   const targetSteps = 10000;
   const expectedStepsSoFar = (currentSeconds / totalSeconds) * targetSteps;
-  const currentDelta = Math.round(amountSteps - expectedStepsSoFar);
+  const currentDelta = Math.round(currentSteps - expectedStepsSoFar);
 
-  let value = ((currentDelta + 2000) / 4000) * 255;
-  value = Math.max(0, Math.min(225, Math.round(value)));
+  let value;
+
+  if (currentSteps >= targetSteps) {
+    value = 255;
+  } else {
+    value = ((currentDelta + 2000) / 4000) * 255;
+    value = Math.max(0, Math.min(225, Math.round(value)));
+  }
+
   return `#${toHex(255 - value)}${toHex(value)}20`;
 };
 
