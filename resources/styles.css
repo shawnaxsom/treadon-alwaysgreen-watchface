@@ -3,8 +3,8 @@
   fill: red;
 }
 
-#myLabel {
-  font-size: 80;
+#timeLabel {
+  font-size: 90;
   font-family: System-Bold;
   text-length: 32;
   text-anchor: middle;
@@ -17,9 +17,9 @@
   font-size: 40;
   font-family: System-Bold;
   text-length: 32;
-  text-anchor: middle;
-  x: 50%;
-  y: 20%+40;
+  text-anchor: end;
+  x: 93%;
+  y: 0%+40;
   fill: white;
 }
 
@@ -27,8 +27,8 @@
   font-size: 40;
   font-family: System-Bold;
   text-length: 32;
-  text-anchor: middle;
-  x: 50%;
+  text-anchor: start;
+  x: 7%;
   y: 80%+40;
   fill: white;
 }
@@ -37,8 +37,8 @@
   font-size: 40;
   font-family: System-Bold;
   text-length: 32;
-  text-anchor: middle;
-  x: 50%;
+  text-anchor: start;
+  x: 7%;
   y: 0%+40;
   fill: white;
 }
@@ -47,8 +47,8 @@
   font-size: 40;
   font-family: System-Bold;
   text-length: 32;
-  text-anchor: middle;
-  x: 85%;
+  text-anchor: end;
+  x: 84%;
   y: 80%+40;
   fill: white;
 }

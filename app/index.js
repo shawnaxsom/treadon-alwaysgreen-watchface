@@ -9,7 +9,7 @@ import { HeartRateSensor } from "heart-rate";
 clock.granularity = "seconds";
 
 // Get a handle on the <text> element
-const myLabel = document.getElementById("myLabel");
+const timeLabel = document.getElementById("timeLabel");
 
 let stepsAtStartOfHour = 0;
 let thisHour = 0;
@@ -25,7 +25,7 @@ const drawTime = date => {
     hours = util.zeroPad(hours);
   }
   let mins = util.zeroPad(today.getMinutes());
-  myLabel.text = `${hours}:${mins}`;
+  timeLabel.text = `${hours}:${mins}`;
 };
 
 const drawTotalSteps = () => {
@@ -71,7 +71,7 @@ const drawTrajectorySteps = date => {
     if (amountSteps < targetSteps) {
       trajectoryStepsLabel.text = `-${targetSteps - amountSteps}`;
     } else {
-      trajectoryStepsLabel.text = "";
+      trajectoryStepsLabel.text = "+1000";
     }
   } else {
     const expectedStepsSoFar = (currentSeconds / totalSeconds) * targetSteps;
@@ -128,13 +128,13 @@ const getBackgroundColor = today => {
   let value;
 
   if (currentSteps >= targetSteps) {
-    value = 255;
+    value = 225;
   } else {
-    value = ((currentDelta + 2000) / 4000) * 255;
-    value = Math.max(0, Math.min(225, Math.round(value)));
+    value = ((currentDelta + 2000) / 4000) * 225;
+    value = Math.max(30, Math.min(225, Math.round(value)));
   }
 
-  return `#${toHex(255 - value)}${toHex(value)}20`;
+  return `#${toHex(225 - value)}${toHex(value)}20`;
 };
 
 clock.ontick = evt => {
