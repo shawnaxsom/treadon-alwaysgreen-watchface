@@ -1,10 +1,14 @@
 <svg class="background">
   <rect id="background-color" width="300" height="300" />
-  <text id="timeLabel" />
-  <text id="hourlyStepsLabel" />
-  <text id="totalStepsLabel" />
-  <text id="trajectoryStepsLabel" />
-  <text id="heartRateLabel" />
 
-  <image x="86%" y="80%+12" width="30" height="30" href="heart.png" />
+  <text id="hourlyStepsLabel" />
+  <text id="trajectoryStepsLabel" />
+  <line id="topLine" />
+
+  <text id="timeLabel" />
+
+  <line id="bottomLine" />
+  <text id="totalStepsLabel" />
+  <text id="heartRateLabel" />
+  <image id="heartRateIcon" href="heart.png" />
 </svg>
