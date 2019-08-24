@@ -1,6 +1,21 @@
-#background {
-  /* viewport-fill: red; */
-  fill: red;
+#dayLabel {
+  font-size: 34;
+  font-family: System-Bold;
+  text-length: 62;
+  text-anchor: middle;
+  x: 50%;
+  y: 0%+40;
+  fill: white;
+}
+
+#dateLabel {
+  font-size: 34;
+  font-family: System-Bold;
+  text-length: 62;
+  text-anchor: middle;
+  x: 50%;
+  y: 100%-20;
+  fill: white;
 }
 
 #timeLabel {
@@ -79,4 +94,3 @@
   y1: 100%-52;
   y2: 100%-52;
 }
-

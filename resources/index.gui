@@ -1,10 +1,12 @@
-<svg class="background">
+<svg id="background">
   <rect id="background-color" width="300" height="300" />
 
   <text id="hourlyStepsLabel" />
   <text id="trajectoryStepsLabel" />
   <line id="topLine" />
 
+  <text id="dayLabel" />
+  <text id="dateLabel" />
   <text id="timeLabel" />
 
   <line id="bottomLine" />
