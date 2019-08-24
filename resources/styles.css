@@ -14,7 +14,7 @@
 }
 
 #hourlyStepsLabel {
-  font-size: 40;
+  font-size: 34;
   font-family: System-Bold;
   text-length: 32;
   text-anchor: start;
@@ -24,7 +24,7 @@
 }
 
 #trajectoryStepsLabel {
-  font-size: 40;
+  font-size: 34;
   font-family: System-Bold;
   text-length: 32;
   text-anchor: end;
@@ -34,7 +34,7 @@
 }
 
 #totalStepsLabel {
-  font-size: 40;
+  font-size: 34;
   font-family: System-Bold;
   text-length: 32;
   text-anchor: start;
@@ -44,7 +44,7 @@
 }
 
 #heartRateLabel {
-  font-size: 40;
+  font-size: 34;
   font-family: System-Bold;
   text-length: 32;
   text-anchor: end;
@@ -55,10 +55,9 @@
 
 #heartRateIcon {
   x: 86%;
-  y: 100%-43;
-  width: 30;
-  height: 30;
-  fill: white;
+  y: 100%-38;
+  width: 22;
+  height: 22;
 }
 
 #topLine {
@@ -67,8 +66,8 @@
   fill: #fafafa;
   stroke-width: 2;
 
-  y1: 55;
-  y2: 55;
+  y1: 52;
+  y2: 52;
 }
 
 #bottomLine {
@@ -77,7 +76,7 @@
   fill: #fafafa;
   stroke-width: 2;
 
-  y1: 100%-55;
-  y2: 100%-55;
+  y1: 100%-52;
+  y2: 100%-52;
 }
 
