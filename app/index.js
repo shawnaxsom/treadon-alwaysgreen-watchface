@@ -71,7 +71,7 @@ const drawTrajectorySteps = date => {
     if (amountSteps < targetSteps) {
       trajectoryStepsLabel.text = `-${targetSteps - amountSteps}`;
     } else {
-      trajectoryStepsLabel.text = "+1000";
+      trajectoryStepsLabel.text = "";
     }
   } else {
     const expectedStepsSoFar = (currentSeconds / totalSeconds) * targetSteps;
