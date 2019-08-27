@@ -138,7 +138,7 @@ const drawTrajectorySteps = date => {
   }
 };
 
-const hrm = null;
+let hrm = null;
 
 const monitorHeartRate = () => {
   if (HeartRateSensor) {
@@ -178,8 +178,25 @@ background.addEventListener("click", evt => {
   inExerciseMode = !inExerciseMode;
   stopwatchTimeStart = lastTick.date;
 
+  setAutoOff();
+
   handleTick(lastTick);
 });
+
+const setAutoOff = () => {
+  if (inExerciseMode && hrm.heartRate > 100) {
+    if (display.autoOff === true) {
+      display.autoOff = false;
+      display.on = true;
+      // display.brightnessOverride = 1.0;
+    }
+  } else {
+    if (display.autoOff === false) {
+      display.autoOff = true;
+      // display.brightnessOverride = undefined;
+    }
+  }
+};
 
 const getBackgroundColor = today => {
   const hour = today.getHours();
@@ -226,12 +243,6 @@ function handleExerciseModeTick(evt) {
   drawHourlySteps(evt.date);
   drawTrajectorySteps(evt.date);
   drawHeartRate();
-
-  display.autoOff = false;
-  display.on = true;
-  display.brightnessOverride = 1.0;
-
-  return;
 }
 
 function handleClockModeTick(evt) {
@@ -255,12 +266,6 @@ function handleClockModeTick(evt) {
   drawHourlySteps(evt.date);
   drawTrajectorySteps(evt.date);
   drawHeartRate();
-
-  display.autoOff = false;
-  display.on = true;
-  display.brightnessOverride = 1.0;
-
-  return;
 }
 
 const handleTick = evt => {
@@ -269,6 +274,8 @@ const handleTick = evt => {
   } else {
     handleClockModeTick(evt);
   }
+
+  setAutoOff();
 };
 
 clock.ontick = evt => {
