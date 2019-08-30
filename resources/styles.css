@@ -18,6 +18,16 @@
   fill: white;
 }
 
+#smallTimeLabel {
+  font-size: 34;
+  font-family: System-Bold;
+  text-length: 32;
+  text-anchor: middle;
+  x: 50%;
+  y: 25%+40;
+  fill: white;
+}
+
 #timeLabel {
   font-size: 90;
   font-family: System-Bold;

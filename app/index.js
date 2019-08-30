@@ -32,9 +32,16 @@ const weekday = [
 
 clock.granularity = "seconds";
 
-const dayLabel = document.getElementById("dayLabel");
+const background = document.getElementById("background");
+const backgroundColor = document.getElementById("background-color");
 const dateLabel = document.getElementById("dateLabel");
+const dayLabel = document.getElementById("dayLabel");
+const heartRateLabel = document.getElementById("heartRateLabel");
+const hourlyStepsLabel = document.getElementById("hourlyStepsLabel");
+const smallTimeLabel = document.getElementById("smallTimeLabel");
 const timeLabel = document.getElementById("timeLabel");
+const totalStepsLabel = document.getElementById("totalStepsLabel");
+const trajectoryStepsLabel = document.getElementById("trajectoryStepsLabel");
 
 let stepsAtStartOfHour = 0;
 let thisHour = 0;
@@ -69,7 +76,11 @@ const drawTime = date => {
     hours = util.zeroPad(hours);
   }
   let mins = util.zeroPad(today.getMinutes());
-  timeLabel.text = `${hours}:${mins}`;
+  if (inExerciseMode) {
+    smallTimeLabel.text = `${hours}:${mins}`;
+  } else {
+    timeLabel.text = `${hours}:${mins}`;
+  }
 };
 
 function padZero(number, size) {
@@ -88,12 +99,10 @@ const drawStopWatch = date => {
 
 const drawTotalSteps = () => {
   const amountSteps = userActivity.today.adjusted["steps"] || 0;
-  const totalStepsLabel = document.getElementById("totalStepsLabel");
   totalStepsLabel.text = amountSteps;
 };
 
 const drawHourlySteps = date => {
-  const hourlyStepsLabel = document.getElementById("hourlyStepsLabel");
   const today = date;
   const hour = today.getHours();
 
@@ -108,7 +117,6 @@ const drawHourlySteps = date => {
 };
 
 const drawTrajectorySteps = date => {
-  const trajectoryStepsLabel = document.getElementById("trajectoryStepsLabel");
   const today = date;
   const hour = today.getHours();
   const minute = today.getMinutes();
@@ -142,8 +150,6 @@ let hrm = null;
 
 const monitorHeartRate = () => {
   if (HeartRateSensor) {
-    const heartRateLabel = document.getElementById("heartRateLabel");
-
     hrm = new HeartRateSensor();
     // hrm.addEventListener("reading", () => {
     //   heartRateLabel.text = hrm.heartRate;
@@ -154,7 +160,6 @@ const monitorHeartRate = () => {
 
 const drawHeartRate = () => {
   if (hrm) {
-    const heartRateLabel = document.getElementById("heartRateLabel");
     heartRateLabel.text = hrm.heartRate;
   }
 };
@@ -173,7 +178,6 @@ function toHex(d) {
 let lastTick = null;
 let inExerciseMode = false;
 
-const background = document.getElementById("background");
 background.addEventListener("click", evt => {
   inExerciseMode = !inExerciseMode;
   stopwatchTimeStart = lastTick.date;
@@ -224,11 +228,11 @@ const getBackgroundColor = today => {
 };
 
 function handleExerciseModeTick(evt) {
-  const backgroundColor = document.getElementById("background-color");
   backgroundColor.style.fill = getBackgroundColor(evt.date);
 
   hide("dateLabel");
   hide("dayLabel");
+  show("smallTimeLabel");
   show("totalStepsLabel");
   show("bottomLine");
   show("totalStepsLabel");
@@ -239,6 +243,7 @@ function handleExerciseModeTick(evt) {
   show("topLine");
 
   drawStopWatch(evt.date);
+  drawTime(evt.date);
   drawTotalSteps();
   drawHourlySteps(evt.date);
   drawTrajectorySteps(evt.date);
@@ -246,13 +251,13 @@ function handleExerciseModeTick(evt) {
 }
 
 function handleClockModeTick(evt) {
-  const backgroundColor = document.getElementById("background-color");
   backgroundColor.style.fill = getBackgroundColor(evt.date);
 
   show("dateLabel");
   show("dayLabel");
   hide("bottomLine");
   hide("totalStepsLabel");
+  hide("smallTimeLabel");
   hide("heartRateLabel");
   hide("heartRateIcon");
   hide("hourlyStepsLabel");
