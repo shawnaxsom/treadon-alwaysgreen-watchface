@@ -9,6 +9,7 @@
   <text id="dateLabel" />
   <text id="smallTimeLabel" />
   <text id="timeLabel" />
+  <text id="exerciseStepsLabel" />
 
   <line id="bottomLine" />
   <text id="totalStepsLabel" />

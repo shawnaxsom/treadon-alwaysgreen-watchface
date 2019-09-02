@@ -40,9 +40,11 @@ const heartRateLabel = document.getElementById("heartRateLabel");
 const hourlyStepsLabel = document.getElementById("hourlyStepsLabel");
 const smallTimeLabel = document.getElementById("smallTimeLabel");
 const timeLabel = document.getElementById("timeLabel");
+const exerciseStepsLabel = document.getElementById("exerciseStepsLabel");
 const totalStepsLabel = document.getElementById("totalStepsLabel");
 const trajectoryStepsLabel = document.getElementById("trajectoryStepsLabel");
 
+let stepsAtStartOfExercise = 0;
 let stepsAtStartOfHour = 0;
 let thisHour = 0;
 let stopwatchTimeStart = null;
@@ -116,6 +118,11 @@ const drawHourlySteps = date => {
   hourlyStepsLabel.text = amountSteps - stepsAtStartOfHour;
 };
 
+const drawExerciseSteps = () => {
+  const amountSteps = userActivity.today.adjusted["steps"] || 0;
+  exerciseStepsLabel.text = amountSteps - stepsAtStartOfExercise;
+};
+
 const drawTrajectorySteps = date => {
   const today = date;
   const hour = today.getHours();
@@ -181,6 +188,7 @@ let inExerciseMode = false;
 background.addEventListener("click", evt => {
   inExerciseMode = !inExerciseMode;
   stopwatchTimeStart = lastTick.date;
+  stepsAtStartOfExercise = userActivity.today.adjusted["steps"] || 0;
 
   setAutoOff();
 
@@ -233,6 +241,7 @@ function handleExerciseModeTick(evt) {
   hide("dateLabel");
   hide("dayLabel");
   show("smallTimeLabel");
+  show("exerciseStepsLabel");
   show("totalStepsLabel");
   show("bottomLine");
   show("totalStepsLabel");
@@ -246,6 +255,7 @@ function handleExerciseModeTick(evt) {
   drawTime(evt.date);
   drawTotalSteps();
   drawHourlySteps(evt.date);
+  drawExerciseSteps();
   drawTrajectorySteps(evt.date);
   drawHeartRate();
 }
@@ -258,6 +268,7 @@ function handleClockModeTick(evt) {
   hide("bottomLine");
   hide("totalStepsLabel");
   hide("smallTimeLabel");
+  hide("exerciseStepsLabel");
   hide("heartRateLabel");
   hide("heartRateIcon");
   hide("hourlyStepsLabel");
@@ -269,6 +280,7 @@ function handleClockModeTick(evt) {
   drawTime(evt.date);
   drawTotalSteps();
   drawHourlySteps(evt.date);
+  drawExerciseSteps();
   drawTrajectorySteps(evt.date);
   drawHeartRate();
 }
