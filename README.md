@@ -20,6 +20,7 @@ The Exercise view is accessed with a single tap, and it shows:
 - Stopwatch
 - Steps during exercise
 - Total steps
+- Heart rate
 
 
 ## Getting Started
