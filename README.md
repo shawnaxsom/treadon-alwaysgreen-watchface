@@ -2,14 +2,25 @@
 
 ## Features
 
-This is a watchface for Fitbit watch devices. I'm using a Versa Lite, so it is optimized for that I suppose.
+This is a watchface for Fitbit watch devices. It hasn't been released to the store yet, it mainly needs some configurable settings.
 
-The watch at this point shows:
+The background color ranges from Red (well behind schedule), to Yellow (on schedule), to Green (ahead of schedule).
 
-- Total steps delta compared to expected steps (currently hard-coded to 10k steps goal 8am-8pm)
+The Clock view shows:
+
+- Current day of week
+- Current time
+- Current date
+
+The Exercise view is accessed with a single tap, and it shows:
+
+- How many steps you are ahead or behind schedule
 - Steps this hour
 - Current Time
-- Total Steps
+- Stopwatch
+- Steps during exercise
+- Total steps
+
 
 ## Getting Started
 
