@@ -5,6 +5,8 @@ import * as util from "../common/utils";
 import userActivity from "user-activity";
 import { HeartRateSensor } from "heart-rate";
 import { display } from "display";
+import { me as appbit } from "appbit";
+import { goals } from "user-activity";
 
 const month = [
   "January",
@@ -136,7 +138,7 @@ const drawTrajectorySteps = date => {
 
   const currentSeconds = (hour - startHour) * 60 * 60 + minute * 60 + second;
   const totalSeconds = (endHour - startHour) * 60 * 60;
-  const targetSteps = 10000;
+  const targetSteps = getStepsGoal();
 
   if (hour < startHour) {
     trajectoryStepsLabel.text = `+${amountSteps}`;
@@ -210,6 +212,17 @@ const setAutoOff = () => {
   }
 };
 
+const getStepsGoal = () => {
+  if (
+    appbit.permissions.granted("access_activity")
+    && goals.steps
+  ) {
+    return goals.steps;
+  }
+
+  return 10000;
+}
+
 const getBackgroundColor = today => {
   const hour = today.getHours();
   const minute = today.getMinutes();
@@ -219,7 +232,7 @@ const getBackgroundColor = today => {
   const endHour = 20;
   const currentSeconds = (hour - startHour) * 60 * 60 + minute * 60 + second;
   const totalSeconds = (endHour - startHour) * 60 * 60;
-  const targetSteps = 10000;
+  const targetSteps = getStepsGoal();
   const expectedStepsSoFar = (currentSeconds / totalSeconds) * targetSteps;
   const currentDelta = Math.round(currentSteps - expectedStepsSoFar);
 
